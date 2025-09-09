@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.com.rms.constants.APIUrls;
 import org.openqa.selenium.WebElement;
+import org.com.rms.pages.LoginPage;
 
 public class BasePage {
      WebDriver driver;
@@ -12,7 +13,7 @@ public class BasePage {
         driver = new ChromeDriver();
         navigateToUrl();
         clickCesButtonOfHomepage();
-        loginToCES("mayankk@regenesys.net","abc123");
+        loginToCES("raginip@regenesys.net","Ragini@reg123");
     }
 
     public void navigateToUrl(){
@@ -20,11 +21,13 @@ public class BasePage {
     }
 
     public void clickCesButtonOfHomepage(){
-        WebElement element = driver.findElement(By.xpath("//a[contains(@href,'https://dev-rms-code-crafters.regenesys.digital/corporate/login')]"));
+        WebElement element = driver.findElement(By.xpath("//a[contains(@href,'" + APIUrls.LOGIN_URL + "')]"));
         element.click();
     }
 
     public void loginToCES(String username,String password){
-
+        LoginPage lp = new LoginPage(driver);
+        lp.loginBtnClick();
+        System.out.println("Clicked on Login button");
     }
 }
